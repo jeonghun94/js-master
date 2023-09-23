@@ -1,58 +1,45 @@
-/** 오름차순 */
-// const solution = (arr) => arr.sort((a, b) => a - b)[Math.floor(arr.length / 2)];
-// console.log(solution([1, 2, 7, 10, 11]));
-// console.log(solution([9, -1, 0]));
+const stars = (n) => {
+  let str = "";
 
-/** 짝수는 싫어요 */
-// const solution = (n) => {
-//   const arr = [];
-//   for (let i = 1; i <= n; i++) {
-//     arr.push(i);
-//   }
-//   return arr.filter((a) => a % 2 !== 0);
-// };
-// const solution = (n) =>
-//   Array.from({ length: n }, (_, i) => i + 1).filter((a) => a % 2 !== 0);
-// console.log(solution(10));
-
-/** 최빈값 구하기 */
-
-// const solution = (arr) => {
-//   if (arr.length === 1) return arr[0];
-
-//   const duplicates = [];
-//   const count = {};
-//   for (const num of arr) {
-//     count[num] = (count[num] || 0) + 1;
-//     if (count[num] === 2) {
-//       duplicates.push(num);
-//     }
-//   }
-//   return duplicates.length > 1 ? -1 : duplicates[0];
-// };
-
-const solution = (array) => {
-  const count = {};
-  let maxCount = 0;
-  let mode = -1;
-
-  for (const num of array) {
-    if (count[num]) {
-      count[num]++;
-    } else {
-      count[num] = 1;
-    }
-
-    if (count[num] > maxCount) {
-      maxCount = count[num];
-      mode = num;
-    } else if (count[num] === maxCount && num !== mode) {
-      console.log(count[num], maxCount, num, mode);
-      mode = -1;
-    }
+  for (let i = 0; i < n; i++) {
+    str += "*".repeat(i + 1) + "\n";
   }
 
-  return mode;
+  return str;
 };
 
-console.log(solution([1, 2, 1, 3]));
+console.log(stars(5));
+
+const gugudan = (n) => {
+  for (let j = 1; j <= 9; j++) {
+    console.log(n * j);
+  }
+};
+
+gugudan(2);
+
+console.log(gugudan(2));
+function printPattern(count) {
+  // count가 양수인지 확인
+  if (count > 0) {
+    // count만큼 반복하면서 패턴 출력
+    for (let i = 1; i <= count; i++) {
+      let stars = "";
+      for (let j = 0; j < i; j++) {
+        stars += "*";
+      }
+      console.log(stars);
+    }
+  } else {
+    console.log("유효한 숫자를 입력하세요."); // 음수 또는 0이 입력된 경우
+  }
+}
+
+// 예제: '*' 패턴 출력 (5줄)
+printPattern(5);
+
+// 예제: '*' 패턴 출력 (3줄)
+printPattern(3);
+
+// 예제: 음수 입력 시 메시지 출력
+printPattern(-2);
